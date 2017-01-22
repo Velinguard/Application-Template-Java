@@ -1,0 +1,9 @@
+g2d.setColor(Color.BLUE);
+w = 100 * SCALER;
+rows = HEIGHT / w;
+columns = WIDTH / w;
+for (k = 0; k < rows; k++)
+    g2d.drawLine(0, k * w , WIDTH, k * w );
+for (k = 0; k < columns; k++){
+    g2d.drawLine(k*w , 0, k*w , HEIGHT);
+}
