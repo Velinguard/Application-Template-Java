@@ -1,0 +1,11 @@
+class Rectangle extends Rectangle2D.Float{
+    Color colour;
+    public Rectangle(int x, int y, int rx, int ry){
+        super(x,y,rx,ry);
+        this.colour = Color.black;
+    }
+    public void paint(Graphics2D g){
+        g.setColor(colour);
+        g.fill(this);
+    }
+}
