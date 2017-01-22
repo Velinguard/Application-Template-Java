@@ -1,0 +1,47 @@
+class Ball extends Ellipse2D.Float{
+    Color colour;
+    double ha; //horizontal acceleration, + = -->
+    double va; //vertical acceleration, + = ^
+    double vSpeed; //vertical speed, + = ^
+    double hSpeed; //horizontal speed, + = -->
+    int mass;
+    public Ball(float x, float y, float r){
+        super(x,y,r,r);
+        colour = Color.blue;
+        this.va = (int) 9.81;
+        this.ha = (int) 0;
+        this.vSpeed = 0;
+        this.hSpeed = 0;
+        this.mass = 3;
+    }
+    public void move(int d, int s){
+        switch (d){
+            //if within the screen then move s up
+            case 0:
+                if (s < 0){
+                    if (HEIGHT * SCALER - super.height > super.getCenterY() + s){
+                        super.y -= s;
+                    }
+                } else {
+                    if (super.height < super.getCenterY() - s){
+                        super.y-= s;
+                    }
+                }break;
+            case 1:
+                //if within the screen then move s to the right
+                if (s < 0){
+                    if (super.width < super.getCenterX() - s){
+                        super.x -= s;
+                    }
+                } else {
+                    if (WIDTH * SCALER - super.width > super.getCenterX() + s){
+                        super.x += s;
+                    }
+                } break;
+        }
+    }
+    public void paint(Graphics2D g){
+        g.setColor(colour);
+        g.fill(this);
+    }
+}
