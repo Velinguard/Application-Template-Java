@@ -1,0 +1,101 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ${package};
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+/**
+ *
+ * @author Sam
+ */
+public class ${name} extends JPanel {
+    public static int WIDTH = 1920;
+    public static int HEIGHT = 1080;
+    public static int SCALER = 1;
+    public static double milliSecondTimer;
+    public static double delta;
+    public static ArrayList<Integer> keysDown;
+    public ${name}(){
+        //Init
+        keysDown = new ArrayList<Integer>();
+    }
+    public static void main(String[] args) throws InterruptedException{
+        JFrame frame = new JFrame("App Name");
+        ${name} app = new ${name}();
+        frame.setSize((int)(WIDTH * SCALER),(int)(HEIGHT * SCALER));
+        frame.add(app);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.requestFocus();
+        long lastLoopTime = System.nanoTime();
+        int fps = 0, lastFpsTime = 0, lastMilliSecondTimer = 0, count = 1;
+        final int TARGET_FPS = 60;
+        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+        
+        while(true){
+            long now = System.nanoTime();
+            long updateLength = now - lastLoopTime;
+            lastLoopTime = now;
+            delta = updateLength / ((double)OPTIMAL_TIME);
+            lastFpsTime += updateLength;
+            lastMilliSecondTimer += updateLength;
+            fps++;
+            if (lastFpsTime > 100000000 * count){
+               milliSecondTimer += 0.1;
+               count++;
+            }
+            if (lastFpsTime >= 1000000000){
+                System.out.println("(FPS: "+fps+")");
+                //milliSecondTimer += 1;
+                lastFpsTime = 0;
+                fps = 0;
+                count = 1;
+            }
+            app.repaint();
+            Thread.sleep( (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );
+        }
+    }
+    public void paint(Graphics g){
+        super.paint(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+
+        //Game loop, but everything time related * delta to get seconds.
+                                    
+    }
+    public class MyKeyListener implements KeyListener{
+
+        public void action(){
+            if (keysDown.contains(KeyEvent.VK_SHIFT)){
+                //example
+            }
+        }
+        @Override
+        public void keyTyped(KeyEvent e) {
+                       
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            action();
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            keysDown.remove(new Integer(e.getKeyCode()));
+        }
+    }
+}
+//Define other objects.
