@@ -1,0 +1,10 @@
+int k;
+g2d.setColor(Color.CYAN);
+int w = 10 * SCALER;
+int rows = HEIGHT / w;
+int columns = WIDTH / w;
+for (k = 0; k < rows; k++)
+g2d.drawLine(0, k * w , WIDTH, k * w );
+for (k = 0; k < columns; k++){
+    g2d.drawLine(k*w , 0, k*w , HEIGHT);
+}
