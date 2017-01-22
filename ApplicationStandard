@@ -42,7 +42,8 @@ public class ${name} extends JPanel {
         final int TARGET_FPS = 60;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
         
-        while(true){
+
+while(true){
             long now = System.nanoTime();
             long updateLength = now - lastLoopTime;
             lastLoopTime = now;
@@ -99,3 +100,10 @@ public class ${name} extends JPanel {
     }
 }
 //Define other objects.
+
+/* Useful shortcuts:
+grid (tab) = grid layout every 10 pixels, on a 100 pixel = 1 metre scale, that is 10 cm.
+grid2 (tab) = grid layout every 100 pixels, on a 100 pixel = 1 metre scale, that is 1m.
+Ball (tab) = creates the Ball class.
+Rectangle (tab) = creates the Rectangle class.
+*/
